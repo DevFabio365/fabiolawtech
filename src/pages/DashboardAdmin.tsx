@@ -42,7 +42,7 @@ const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
 
 const DashboardAdmin: React.FC = () => {
   return (
-    <div className="w-full h-screen flex flex-col space-y-8 items-center pt-5">
+    <div className="w-full min-h-screen flex flex-col space-y-8 items-center pt-5">
       <div className="flex flex-col space-y-3 xl:w-[1200px]">
         <div className="font-bold text-black text-xl">Visão de prazos</div>
       </div>
@@ -87,7 +87,7 @@ const DashboardAdmin: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px] overflow-auto">
+      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px]">
         <h3 className="font-semibold mb-2">Próximos prazos</h3>
         <table className="min-w-full text-sm border-collapse">
           <thead className="bg-gray-100">
@@ -117,7 +117,7 @@ const DashboardAdmin: React.FC = () => {
         </table>
       </div>
 
-      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px] overflow-auto">
+      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px]">
         <h3 className="font-semibold mb-2">Processos não atribuídos</h3>
         <table className="min-w-full text-sm border-collapse">
           <thead className="bg-gray-100">
