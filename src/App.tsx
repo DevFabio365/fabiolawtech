@@ -14,7 +14,7 @@ import Processo from './pages/Processo';
 import BaseConhecimento from './pages/BaseConhecimento';
 import PrazosAdvogado from './pages/PrazosAdvogado';
 import PrazosAdmin from './pages/PrazosAdmin';
-import PrazosAdminBKP from './pages/PrazosAdminBKP';
+//import PrazosAdminBKP from './pages/PrazosAdmin';
 import Produtividade from './pages/Produtividade';
 import Settings from './pages/Settings';
 
@@ -42,9 +42,6 @@ const App: React.FC = () => {
                 {role === 'admin' && <Route path="admin/baseconhecimento" element={<BaseConhecimento />} />}
                 {role === 'advogado' && <Route path="adv/baseconhecimento" element={<BaseConhecimento />} />}
                 {role === 'admin' && <Route path="admin/prazos" element={<PrazosAdmin />} />}
-
-                {role === 'admin' && <Route path="admin/prazosBKP" element={<PrazosAdminBKP />} />}
-
                 {role === 'advogado' && <Route path="adv/prazos" element={<PrazosAdvogado />} />}
                 {role === 'admin' && <Route path="admin/processo" element={<Processo />} />}
                 {role === 'advogado' && <Route path="adv/processo" element={<Processo />} />}                

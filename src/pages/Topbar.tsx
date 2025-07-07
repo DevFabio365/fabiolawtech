@@ -25,7 +25,7 @@ const Topbar: React.FC = () => {
 					<li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/prazos' : '/adv/prazos'}>Prazos</Link></li>
           <li className="text-white pr-4">|</li>
 
-          <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/prazosBKP' : '/admin/prazosBKP'}>PrazosBKP</Link></li>
+          <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/prazos' : '/admin/prazos'}>PrazosBKP</Link></li>
           <li className="text-white pr-4">|</li>
 
           <li className="text-white pr-4">{role === 'admin' && <Link to="/admin/produtividade">Produtividade</Link>}</li>
