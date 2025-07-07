@@ -1,6 +1,5 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
-import './Prazos.css';
 
 const kpis = {
   Total: 14,
@@ -55,27 +54,30 @@ const diasRestantes = (data: string) => {
   return Math.ceil(diff);
 };
 
-const PrazosAdminBKP: React.FC = () => {
+const PrazosAdmin: React.FC = () => {
   return (
-    <div className="prazos-container">
-      <h2>Prazos - Administrador</h2>
+    <div className="w-full h-screen flex flex-col space-y-8 items-center pt-5">
+      <div className="flex flex-col space-y-3 xl:w-[1200px]">
+        <div className="font-bold text-black text-xl">Prazos</div>
+      </div>
 
-      {/* KPIs com Total primeiro */}
-      <div className="kpis">
+      <div className="flex flex-wrap gap-4 xl:w-[1200px]">
         {Object.entries(kpis)
           .sort(([a], [b]) => (a === 'Total' ? -1 : b === 'Total' ? 1 : 0))
           .map(([key, value]) => (
-            <div key={key} className="kpi-card">
-              <strong>{value}</strong>
-              <span>{key}</span>
+            <div
+              key={key}
+              className="bg-white border rounded-md shadow w-32 text-center p-3"
+            >
+              <div className="text-lg font-bold">{value}</div>
+              <div className="text-sm text-gray-600">{key}</div>
             </div>
           ))}
       </div>
 
-      <div className="prazos-content">
-        {/* Gráfico */}
-        <div className="grafico-barras">
-          <h3>Prazos por advogado</h3>
+      <div className="flex gap-6 xl:w-[1200px] items-start">
+        <div className="bg-white rounded-md shadow p-4 w-1/3 min-w-[240px]">
+          <h3 className="font-semibold mb-2">Prazos por advogado</h3>
           <ResponsiveContainer width="100%" height={360}>
             <BarChart layout="vertical" data={prazosStatusPorAdvogado}>
               <XAxis type="number" />
@@ -94,30 +96,36 @@ const PrazosAdminBKP: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Tabela lateral */}
-        <div className="tabela-prazos">
-          <h3>Prazos da semana</h3>
-          <table>
-            <thead>
+        <div className="bg-white rounded-md shadow p-4 flex-1 overflow-y-auto">
+          <h3 className="font-semibold mb-2">Prazos da semana</h3>
+          <table className="min-w-full text-sm border-collapse">
+            <thead className="bg-gray-100">
               <tr>
-                <th>Processo</th>
-                <th>Advogado</th>
-                <th>Prazo Interno</th>
-                <th>Status</th>
+                <th className="px-2 py-1 text-left">Processo</th>
+                <th className="px-2 py-1 text-left">Advogado</th>
+                <th className="px-2 py-1 text-left">Prazo Interno</th>
+                <th className="px-2 py-1 text-left">Status</th>
               </tr>
             </thead>
             <tbody>
-              {prazosSemana.map(prazo => (
+              {prazosSemana.map((prazo) => (
                 <tr
                   key={prazo.processo}
-                  className={diasRestantes(prazo.prazoInterno) <= 2 ? 'urgente' : ''}
+                  className={
+                    diasRestantes(prazo.prazoInterno) <= 2 ? 'bg-red-50' : ''
+                  }
                 >
-                  <td>
-                    <a href={`/admin/processo?idprocesso=${prazo.processo}`}>{prazo.processo}</a>
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=${prazo.processo}`}
+                      className="text-blue-800"
+                    >
+                      {prazo.processo}
+                    </a>
                   </td>
-                  <td>{prazo.advogado}</td>
-                  <td>{prazo.prazoInterno}</td>
-                  <td>{prazo.status}</td>
+                  <td className="border-b px-2 py-1">{prazo.advogado}</td>
+                  <td className="border-b px-2 py-1">{prazo.prazoInterno}</td>
+                  <td className="border-b px-2 py-1">{prazo.status}</td>
                 </tr>
               ))}
             </tbody>
@@ -128,4 +136,4 @@ const PrazosAdminBKP: React.FC = () => {
   );
 };
 
-export default PrazosAdminBKP;
+export default PrazosAdmin;
