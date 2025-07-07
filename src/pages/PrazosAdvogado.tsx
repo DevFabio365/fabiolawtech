@@ -1,5 +1,4 @@
 import React from 'react';
-import './Prazos.css';
 
 const kpis = {
   Total: 6,
@@ -65,56 +64,74 @@ const diasRestantes = (data: string) => {
 
 const PrazosAdvogado: React.FC = () => {
   return (
-    <div className="prazos-container">
-      <h2>Meus Prazos</h2>
+    <div className="w-full h-screen flex flex-col space-y-8 items-center pt-5">
+      <div className="flex flex-col space-y-3 xl:w-[1200px]">
+        <div className="font-bold text-black text-xl">Meus Prazos</div>
+      </div>
 
-      {/* KPIs com Total primeiro */}
-      <div className="kpis">
+      <div className="flex flex-wrap gap-4 xl:w-[1200px]">
         {Object.entries(kpis)
           .sort(([a], [b]) => (a === 'Total' ? -1 : b === 'Total' ? 1 : 0))
           .map(([key, value]) => (
-            <div key={key} className="kpi-card">
-              <strong>{value}</strong>
-              <span>{key}</span>
+            <div
+              key={key}
+              className="bg-white border rounded-md shadow w-32 text-center p-3"
+            >
+              <div className="text-lg font-bold">{value}</div>
+              <div className="text-sm text-gray-600">{key}</div>
             </div>
           ))}
       </div>
 
-      <h3>Próximos prazos internos</h3>
-      <table className="prazos-tabela">
-        <thead>
-          <tr>
-            <th>Processo</th>
-            <th>Resumo</th>
-            <th>Objeto</th>
-            <th>Providência</th>
-            <th>Prazo Interno</th>
-            <th>Prazo Fatal</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {prazos.map(p => (
-            <tr
-              key={p.processo}
-              className={diasRestantes(p.prazoInterno) <= 2 ? 'urgente' : ''}
-            >
-              <td><a href={`/adv/processo?idprocesso=${p.processo}`}>{p.processo}</a></td>
-              <td>{p.resumo}</td>
-              <td>{p.objeto}</td>
-              <td>{p.providencia}</td>
-              <td>{p.prazoInterno}</td>
-              <td>{p.prazoFatal}</td>
-              <td>{p.status}</td>
-              <td>
-                {p.status === 'Recebido' && <button>Iniciar</button>}
-                {p.status === 'Em andamento' && <button>Enviar para revisão</button>}
-              </td>
+      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px] overflow-auto">
+        <h3 className="font-semibold mb-2">Próximos prazos internos</h3>
+        <table className="min-w-full text-sm border-collapse">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-2 py-1 text-left">Processo</th>
+              <th className="px-2 py-1 text-left">Resumo</th>
+              <th className="px-2 py-1 text-left">Objeto</th>
+              <th className="px-2 py-1 text-left">Providência</th>
+              <th className="px-2 py-1 text-left">Prazo Interno</th>
+              <th className="px-2 py-1 text-left">Prazo Fatal</th>
+              <th className="px-2 py-1 text-left">Status</th>
+              <th className="px-2 py-1 text-left">Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {prazos.map((p) => (
+              <tr
+                key={p.processo}
+                className={diasRestantes(p.prazoInterno) <= 2 ? 'bg-red-50' : ''}
+              >
+                <td className="border-b px-2 py-1">
+                  <a href={`/adv/processo?idprocesso=${p.processo}`} className="text-blue-800">
+                    {p.processo}
+                  </a>
+                </td>
+                <td className="border-b px-2 py-1">{p.resumo}</td>
+                <td className="border-b px-2 py-1">{p.objeto}</td>
+                <td className="border-b px-2 py-1">{p.providencia}</td>
+                <td className="border-b px-2 py-1">{p.prazoInterno}</td>
+                <td className="border-b px-2 py-1">{p.prazoFatal}</td>
+                <td className="border-b px-2 py-1">{p.status}</td>
+                <td className="border-b px-2 py-1 space-x-2">
+                  {p.status === 'Recebido' && (
+                    <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
+                      Iniciar
+                    </button>
+                  )}
+                  {p.status === 'Em andamento' && (
+                    <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
+                      Enviar para revisão
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
