@@ -13,24 +13,24 @@ const Topbar: React.FC = () => {
 
   return (
     <div className="bg-[#2C3E50] w-full h-14 flex justify-center">
-			<div className="xl:w-[1200px] xl:h-full flex items-center justify-evenly">
+			<div className="xl:w-[1200px] xl:h-full flex items-center justify-evenly whitespace-nowrap">
 				<span className="w-1/2 pb-2 text-xl font-bold text-white">Sistema Jurídico</span>
-				<ul className="flex pb-1">
+
+				<ul className="xl:w-[1200px] flex pb-1">
+
+          <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/tela' : '/adv/tela'}>[ TELA TESTE ]</Link></li>
+          <li className="text-white pr-4">|</li>
+
 					<li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/dashboard' : '/adv/dashboard'}>Dashboard</Link></li>
           <li className="text-white pr-4">|</li>
 					<li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/intimacoes' : '/adv/intimacoes'}>Intimações</Link></li>
           <li className="text-white pr-4">|</li>
-          <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/BaseConhecimento' : '/adv/BaseConhecimento'}>BaseDeConhecimentos</Link></li>
+          <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/BaseConhecimento' : '/adv/BaseConhecimento'}>Base De Conhecimentos</Link></li>
           <li className="text-white pr-4">|</li>
 					<li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/prazos' : '/adv/prazos'}>Prazos</Link></li>
-          <li className="text-white pr-4">|</li>
 
-          <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/prazos' : '/admin/prazos'}>PrazosBKP</Link></li>
-          <li className="text-white pr-4">|</li>
-
-          <li className="text-white pr-4">{role === 'admin' && <Link to="/admin/produtividade">Produtividade</Link>}</li>
-          <li className="text-white pr-4">|</li>
-          <li className="text-white pr-4">{role === 'admin' && <Link to="/settings">Configurações</Link>}</li>
+          <li className="text-white pr-4">{role === 'admin' && <Link to="/admin/produtividade">|<span className="pr-4" />Produtividade</Link>}</li>
+          <li className="text-white pr-4">{role === 'admin' && <Link to="/settings">|<span className="pr-4" />Configurações</Link>}</li>
 				</ul>
         <button onClick={handleLogout} className="logout-button">
           <span className="flex items-center">

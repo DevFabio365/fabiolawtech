@@ -19,13 +19,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const login = (user: string, password: string) => {
-    if (user === 'admin@gmail.com' && password === '1234') {
+    if (user === 'adm@adm' && password === '123') {
       localStorage.setItem('auth', 'true');
       localStorage.setItem('role', 'admin');
       setIsAuthenticated(true);
       setRole('admin');
       return true;
-    } else if (user === 'gustavoprado82@gmail.com' && password === '1234') {
+    } else if (user === 'adv@adv' && password === '123') {
       localStorage.setItem('auth', 'true');
       localStorage.setItem('role', 'advogado');
       setIsAuthenticated(true);
