@@ -1,0 +1,45 @@
+.dashboard-container {
+  padding: 2rem;
+}
+
+.kpi-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  height: 120px;
+  background: #f5f5f5;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  flex: 1;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.kpi-card h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.section table th, .section table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.section table a {
+  color: #2c3e50;
+  text-decoration: none;
+}

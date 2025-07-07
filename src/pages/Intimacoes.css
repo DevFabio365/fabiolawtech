@@ -1,0 +1,169 @@
+.intimacoes-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+}
+
+.filtro {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  flex: 1;
+}
+
+.filtro label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.filtro input,
+.filtro select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.filtro-data {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.tabela-placeholder {
+  padding: 2rem;
+  background: #fff;
+  border: 1px dashed #ccc;
+  text-align: center;
+  border-radius: 6px;
+}
+
+
+.intimacoes-container {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.abas {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.abas button {
+  background: #e0e0e0;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.abas button.ativa {
+  background: #2c3e50;
+  color: white;
+}
+
+.abas button:hover:not(.ativa) {
+  background: #ccc;
+}
+
+.intimacoes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+}
+
+.intimacoes-table th,
+.intimacoes-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+  font-size: 0.95rem;
+}
+
+.intimacoes-table th {
+  background-color: #f3f5f7;
+  text-align: left;
+  font-weight: 600;
+  user-select: none;
+  cursor: pointer;
+}
+
+.intimacoes-table th:hover {
+  background-color: #e6e8ea;
+}
+
+.intimacoes-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.intimacoes-table a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.intimacoes-table select,
+.intimacoes-table input[type="date"],
+.intimacoes-table textarea {
+  font-size: 0.95rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.intimacoes-table textarea {
+  resize: vertical;
+  min-height: 40px;
+}
+
+.intimacoes-table button {
+  padding: 0.35rem 0.7rem;
+  margin-right: 0.5rem;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.intimacoes-table button:hover:not(:disabled) {
+  background-color: #1c2833;
+}
+
+.intimacoes-table button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.intimacoes-table td:last-child {
+  white-space: nowrap;
+}
+
+.intimacoes-table tr td {
+  transition: background 0.3s;
+}
+
+.intimacoes-table tr.editando {
+  background-color: #fff9e6;
+}
