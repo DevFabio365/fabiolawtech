@@ -48,25 +48,34 @@ const prazosSemana = [
   },
 ];
 
-const PrazosAdmin: React.FC = () => {
-  return (
-    <div className="w-full h-screen flex flex-col space-y-8 items-center pt-5">
-      <h2 className="font-bold text-black text-xl">Prazos - Administrador</h2>
+const diasRestantes = (data: string) => {
+  const hoje = new Date();
+  const prazo = new Date(data);
+  const diff = (prazo.getTime() - hoje.getTime()) / (1000 * 3600 * 24);
+  return Math.ceil(diff);
+};
 
-      <div className="flex flex-wrap gap-4 mb-4">
+const PrazosAdminBKP: React.FC = () => {
+  return (
+    <div className="prazos-container">
+      <h2>Prazos - Administrador</h2>
+
+      {/* KPIs com Total primeiro */}
+      <div className="kpis">
         {Object.entries(kpis)
           .sort(([a], [b]) => (a === 'Total' ? -1 : b === 'Total' ? 1 : 0))
           .map(([key, value]) => (
-            <div key={key} className="bg-gray-100 p-4 rounded-lg shadow-md">
-              <strong className="text-lg">{value}</strong>
-              <span className="text-gray-600">{key}</span>
+            <div key={key} className="kpi-card">
+              <strong>{value}</strong>
+              <span>{key}</span>
             </div>
           ))}
       </div>
 
-      <div className="flex flex-wrap gap-4 mb-4">
-        <div className="w-full md:w-1/2 xl:w-1/3">
-          <h3 className="text-lg font-bold mb-2">Prazos por advogado</h3>
+      <div className="prazos-content">
+        {/* Gráfico */}
+        <div className="grafico-barras">
+          <h3>Prazos por advogado</h3>
           <ResponsiveContainer width="100%" height={360}>
             <BarChart layout="vertical" data={prazosStatusPorAdvogado}>
               <XAxis type="number" />
@@ -85,32 +94,38 @@ const PrazosAdmin: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="w-full md:w-1/2 xl:w-1/3">
-  <h3 className="text-lg font-bold mb-2">Prazos da semana</h3>
-  <table className="w-full table-auto">
-    <thead>
-      <tr>
-        <th className="px-4 py-2">Processo</th>
-        <th className="px-4 py-2">Advogado</th>
-        <th className="px-4 py-2">Prazo Interno</th>
-        <th className="px-4 py-2">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {prazosSemana.map((prazo, index) => (
-        <tr key={index} className="border-b border-gray-200">
-          <td className="px-4 py-2">{prazo.processo}</td>
-          <td className="px-4 py-2">{prazo.advogado}</td>
-          <td className="px-4 py-2">{prazo.prazoInterno}</td>
-          <td className="px-4 py-2">{prazo.status}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-</div>
-</div>
-);
+        {/* Tabela lateral */}
+        <div className="tabela-prazos">
+          <h3>Prazos da semana</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Processo</th>
+                <th>Advogado</th>
+                <th>Prazo Interno</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prazosSemana.map(prazo => (
+                <tr
+                  key={prazo.processo}
+                  className={diasRestantes(prazo.prazoInterno) <= 2 ? 'urgente' : ''}
+                >
+                  <td>
+                    <a href={`/admin/processo?idprocesso=${prazo.processo}`}>{prazo.processo}</a>
+                  </td>
+                  <td>{prazo.advogado}</td>
+                  <td>{prazo.prazoInterno}</td>
+                  <td>{prazo.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default PrazosAdmin;
+export default PrazosAdminBKP;
