@@ -15,6 +15,7 @@ const Intimacoes: React.FC = () => {
 
   //npm install -g json-server
   //json-server --watch ./src/data/db.json --port 3000
+  //npm install --save-dev concurrently
 
   useEffect(() => {
     getIntimacoes()
