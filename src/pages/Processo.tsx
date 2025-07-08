@@ -13,6 +13,9 @@ const Processo: React.FC = () => {
   const [complementares, setComplementares] = useState<Complementar[]>([]);
   const [mostrarPop, setMostrarPop] = useState(false);
   const [novoArquivo, setNovoArquivo] = useState<{ nome: string } | null>(null);
+  const [draggingPeca, setDraggingPeca] = useState<boolean>(false);
+  const [draggingComplementar, setDraggingComplementar] = useState<boolean>(false);
+  const [dragging, setDragging] = useState<boolean>(false);
 
   const handleDropPeca = (nome: string) => {
     if (peca) {
@@ -59,6 +62,9 @@ const Processo: React.FC = () => {
     destino: 'peca' | 'complementar'
   ) => {
     e.preventDefault();
+    setDragging(false);
+    if (destino === 'peca') setDraggingPeca(false);
+    else setDraggingComplementar(false);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       Array.from(e.dataTransfer.files).forEach((file) => {
         if (destino === 'peca') handleDropPeca(file.name);
@@ -73,7 +79,8 @@ const Processo: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col space-y-8 items-center pt-5 bg-gray-100">
-      <div className="w-full max-w-[1100px] space-y-8">        
+      {dragging && <div className="fixed inset-0 bg-black/20 pointer-events-none" />}
+      <div className="w-full max-w-[1100px] space-y-8">
         <div className="font-bold text-black text-xl">Processo: 0012345-89.2024.8.26.0001</div>
 
         <div className="flex flex-wrap gap-4">
@@ -119,11 +126,13 @@ const Processo: React.FC = () => {
           <div className="flex-1">
             <h4 className="font-semibold mb-2">Peça</h4>
             <div
-              className="border-2 border-dashed border-gray-300 p-4 text-center bg-white rounded-lg relative text-sm mb-4 min-h-[80px]"
+              className={`border-2 border-dashed border-gray-300 p-4 text-center bg-white rounded-lg relative text-sm mb-4 min-h-[80px] ${draggingPeca ? 'bg-blue-50 border-blue-500' : ''}`}
               onDragOver={(e) => e.preventDefault()}
+              onDragEnter={() => { setDragging(true); setDraggingPeca(true); }}
+              onDragLeave={() => { setDragging(false); setDraggingPeca(false); }}
               onDrop={(e) => handleDropZone(e, 'peca')}
             >
-              Arraste aqui ou clique para enviar
+              {draggingPeca ? 'Solte o arquivo aqui' : 'Arraste aqui ou clique para enviar'}
               <input
                 type="file"
                 onChange={(e) => {
@@ -158,11 +167,13 @@ const Processo: React.FC = () => {
           <div className="flex-1">
             <h4 className="font-semibold mb-2">Arquivos complementares</h4>            
             <div
-              className="border-2 border-dashed border-gray-300 p-4 text-center bg-white rounded-lg relative text-sm mb-4 min-h-[80px]"
+              className={`border-2 border-dashed border-gray-300 p-4 text-center bg-white rounded-lg relative text-sm mb-4 min-h-[80px] ${draggingComplementar ? 'bg-blue-50 border-blue-500' : ''}`}
               onDragOver={(e) => e.preventDefault()}
+              onDragEnter={() => { setDragging(true); setDraggingComplementar(true); }}
+              onDragLeave={() => { setDragging(false); setDraggingComplementar(false); }}
               onDrop={(e) => handleDropZone(e, 'complementar')}
             >
-              Arraste aqui ou clique para enviar
+              {draggingComplementar ? 'Solte o arquivo aqui' : 'Arraste aqui ou clique para enviar'}
               <input
                 type="file"
                 multiple
