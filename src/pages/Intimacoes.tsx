@@ -32,8 +32,8 @@ const Intimacoes: React.FC = () => {
 
   return (
 
-   <div>    
-    <div className="w-full h-screen flex flex-col space-y-8 items-center pt-5">
+   <div>
+    <div className="w-full h-screen flex flex-col space-y-8 items-center pt-5 mt-14">
         <div className="flex flex-col space-y-3 xl:w-[1200px]">
             <div className="font-bold text-black text-xl">Intimações</div>
             <div className='space-x-2.5'>

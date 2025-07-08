@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Topbar: React.FC = () => {
   const { role, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isIntimacoes = location.pathname.includes('intimacoes');
 
   const handleLogout = () => {
     logout();
@@ -12,7 +15,11 @@ const Topbar: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#2C3E50] w-full h-14 flex justify-center">
+    <div
+      className={`${
+        isIntimacoes ? 'fixed top-0 left-0 w-full z-50' : ''
+      } bg-[#2C3E50] w-full h-14 flex justify-center`}
+    >
 			<div className="xl:w-[1200px] xl:h-full flex items-center justify-evenly whitespace-nowrap">
 				<span className="w-1/2 pb-2 text-xl font-bold text-white">Sistema Jurídico</span>
 
