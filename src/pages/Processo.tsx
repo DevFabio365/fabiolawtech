@@ -36,7 +36,7 @@ const Processo: React.FC = () => {
   const handleDropComplementar = (nome: string) => {
     const novo: Complementar = {
       nome,
-      nota: 'Adicionado de template em ' + new Date().toLocaleDateString('pt-BR')
+      nota: 'Adicionado em ' + new Date().toLocaleDateString('pt-BR')
     };
     setComplementares(prev => [...prev, novo]);
   };
@@ -59,9 +59,16 @@ const Processo: React.FC = () => {
     destino: 'peca' | 'complementar'
   ) => {
     e.preventDefault();
-    const nome = e.dataTransfer.getData('text/plain');
-    if (destino === 'peca') handleDropPeca(nome);
-    else handleDropComplementar(nome);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      Array.from(e.dataTransfer.files).forEach((file) => {
+        if (destino === 'peca') handleDropPeca(file.name);
+        else handleDropComplementar(file.name);
+      });
+    } else {
+      const nome = e.dataTransfer.getData('text/plain');
+      if (destino === 'peca') handleDropPeca(nome);
+      else handleDropComplementar(nome);
+    }
   };
 
   return (
@@ -158,8 +165,11 @@ const Processo: React.FC = () => {
               Arraste aqui ou clique para enviar
               <input
                 type="file"
+                multiple
                 onChange={(e) => {
-                  if (e.target.files?.[0]) handleDropComplementar(e.target.files[0].name);
+                  if (e.target.files) {
+                    Array.from(e.target.files).forEach((file) => handleDropComplementar(file.name));
+                  }
                 }}
                 className="absolute inset-0 opacity-0 cursor-pointer"
               />
@@ -175,34 +185,21 @@ const Processo: React.FC = () => {
               </thead>
               
               <tbody>
-                <tr className="border-b">
-                  <td className="px-2 py-1">Contestacao_001.docx</td>
-                  <td className="px-2 py-1">Versão inicial enviada pelo advogado</td>
-                  <td className="px-2 py-1 text-right">
-                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
-                      🗑️ Remover
-                    </button>
-                  </td>
-                </tr>
-                <tr className="border-b">
-                  <td className="px-2 py-1">Contestacao_002.docx</td>
-                  <td className="px-2 py-1">Versão inicial enviada pelo advogado</td>
-                  <td className="px-2 py-1 text-right">
-                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
-                      🗑️ Remover
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-2 py-1">Contestacao_003.docx</td>
-                  <td className="px-2 py-1">Versão inicial enviada pelo advogado</td>
-                  <td className="px-2 py-1 text-right">
-                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
-                      🗑️ Remover
-                    </button>
-                  </td>
-                </tr>
-              </tbody>                
+                {complementares.map((c, i) => (
+                  <tr key={i}>
+                    <td className="px-2 py-1">{c.nome}</td>
+                    <td className="px-2 py-1">{c.nota}</td>
+                    <td className="px-2 py-1 text-right">
+                      <button
+                        className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition"
+                        onClick={() => removerComplementar(i)}
+                      >
+                        🗑️ Remover
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
