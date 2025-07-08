@@ -66,16 +66,36 @@ const Topbar: React.FC = () => {
           <li className="text-white pr-4">{role === 'admin' && <Link to="/admin/produtividade">|<span className="pr-4" />Produtividade</Link>}</li>
           <li className="text-white pr-4">{role === 'admin' && <Link to="/settings">|<span className="pr-4" />Configurações</Link>}</li>
 				</ul>
-        <button onClick={handleLogout} className="logout-button">
+        <button
+          onClick={handleLogout}
+          className="logout-button transition-all duration-300"
+        >
           <span className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-log-out-icon lucide-log-out">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className={`lucide lucide-log-out-icon lucide-log-out transition-all duration-300 ${
+                isIntimacoes && shrink ? 'w-3 h-3' : 'w-4 h-4'
+              }`}
+            >
               <path d="m16 17 5-5-5-5" />
               <path d="M21 12H9" />
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
             </svg>
-            <span className="text-white pl-2 pb-1">Logout</span>
+            <span
+              className={`text-white pl-2 pb-1 transition-all duration-300 ${
+                isIntimacoes && shrink ? 'text-[0.625rem]' : 'text-sm'
+              }`}
+            >
+              Logout
+            </span>
           </span>
-        </button>				
+        </button>
 			</div>
 		</div>
 
