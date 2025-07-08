@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -9,6 +9,19 @@ const Topbar: React.FC = () => {
 
   const isIntimacoes = location.pathname.includes('intimacoes');
 
+  const [shrink, setShrink] = useState(false);
+
+  useEffect(() => {
+    if (!isIntimacoes) return;
+
+    const onScroll = () => {
+      setShrink(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isIntimacoes]);
+
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -17,13 +30,27 @@ const Topbar: React.FC = () => {
   return (
     <div
       className={`${
-        isIntimacoes ? 'fixed top-0 left-0 w-full z-50' : ''
-      } bg-[#2C3E50] w-full h-14 flex justify-center`}
+        isIntimacoes
+          ? `fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+              shrink ? 'h-7' : 'h-14'
+            }`
+          : 'h-14'
+      } bg-[#2C3E50] w-full flex justify-center`}
     >
-			<div className="xl:w-[1200px] xl:h-full flex items-center justify-evenly whitespace-nowrap">
-				<span className="w-1/2 pb-2 text-xl font-bold text-white">Sistema Jurídico</span>
+                        <div className="xl:w-[1200px] xl:h-full flex items-center justify-evenly whitespace-nowrap">
+                                <span
+                                  className={`w-1/2 pb-2 font-bold text-white transition-all duration-300 ${
+                                    isIntimacoes && shrink ? 'text-[0.625rem]' : 'text-xl'
+                                  }`}
+                                >
+                                  Sistema Jurídico
+                                </span>
 
-				<ul className="xl:w-[1200px] flex pb-1">
+                                <ul
+                                  className={`xl:w-[1200px] flex pb-1 transition-opacity duration-300 ${
+                                    isIntimacoes && shrink ? 'opacity-0' : 'opacity-100'
+                                  }`}
+                                >
 
           <li className="text-white pr-4"><Link to={role === 'admin' ? '/admin/tela' : '/adv/tela'}>[ TELA TESTE ]</Link></li>
           <li className="text-white pr-4">|</li>
