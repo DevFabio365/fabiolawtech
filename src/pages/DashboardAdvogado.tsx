@@ -71,35 +71,74 @@ const DashboardAdvogado: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px] overflow-auto">
-        <h3 className="font-semibold mb-2">Prazos:</h3>
-        <table className="min-w-full text-sm border-collapse">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-2 py-1 text-left">Processo</th>
-              <th className="px-2 py-1 text-left">Descrição</th>
-              <th className="px-2 py-1 text-left">Prazo Interno</th>
-              <th className="px-2 py-1 text-left">Prazo Fatal</th>
-            </tr>
-          </thead>
-          <tbody>
-            {prazos.map((p) => (
-              <tr key={p.numero}>
-                <td className="border-b px-2 py-1">
-                  <a href={`/adv/processo?idprocesso=${p.numero}`} className="text-blue-800">
-                    {p.numero}
-                  </a>
-                </td>
-                <td className="border-b px-2 py-1">{p.descricao}</td>
-                <td className="border-b px-2 py-1">{p.prazoInterno}</td>
-                <td className="border-b px-2 py-1">{p.prazoFatal}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      <div className="bg-white rounded-md border border-dashed p-4 xl:w-[1200px]">
+        <h4 className="font-semibold mb-4">Prazos</h4>        
+            <table className="min-w-full text-sm border-collapse bg-white">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-2 py-1 text-left">Processo</th>
+                  <th className="px-2 py-1 text-left">Descrição</th>
+                  <th className="px-2 py-1 text-left">Prazo Interno</th>
+                  <th className="px-2 py-1 text-left">Prazo Fatal</th>                  
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">845201-03.2024.8.26.0010</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Contestação em ação trabalhista</td>
+                  <td className="border-b px-2 py-1">11/06/2025</td> 
+                  <td className="border-b px-2 py-1">13/06/2025</td>                  
+                </tr> 
+
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">920183-10.2023.8.26.0009</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Prazo de réplica em ação civil</td>
+                  <td className="border-b px-2 py-1">12/06/2025</td> 
+                  <td className="border-b px-2 py-1">14/06/2025</td>                   
+                </tr>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">845201-03.2024.8.26.0010</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Contestação em ação trabalhista</td>
+                  <td className="border-b px-2 py-1">11/06/2025</td> 
+                  <td className="border-b px-2 py-1">13/06/2025</td>                  
+                </tr> 
+
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">920183-10.2023.8.26.0009</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Prazo de réplica em ação civil</td>
+                  <td className="border-b px-2 py-1">12/06/2025</td> 
+                  <td className="border-b px-2 py-1">14/06/2025</td>                   
+                </tr>                       
+              </tbody>
+            </table>     
       </div>
-
-
+      <span className="m-4">d</span>
     </div>
   );
 };

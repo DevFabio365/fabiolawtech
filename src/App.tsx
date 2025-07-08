@@ -4,7 +4,7 @@ import { useAuth } from './context/AuthContext';
 import PrivateRoute from './routes/PrivateRoute';
 import Topbar from './pages/Topbar';
 
-import Tela from './pages/DashboardAdminBKP';
+import Tela from './pages/ProcessoBKP';
 
 import Login from './pages/Login';
 import DashboardAdmin from './pages/DashboardAdmin';

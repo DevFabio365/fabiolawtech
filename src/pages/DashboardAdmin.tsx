@@ -87,8 +87,8 @@ const DashboardAdmin: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px]">
-        <h3 className="font-semibold mb-2">Próximos prazos</h3>
+      <div className="bg-white rounded-md border border-dashed p-4 xl:w-[1200px]">
+        <h4 className="font-semibold mb-4">Próximos prazos</h4> 
         <table className="min-w-full text-sm border-collapse">
           <thead className="bg-gray-100">
             <tr>
@@ -103,8 +103,8 @@ const DashboardAdmin: React.FC = () => {
             {processos.map((p) => (
               <tr key={p.numero}>
                 <td className="border-b px-2 py-1">
-                  <a href={`/admin/processo?idprocesso=${p.numero}`} className="text-blue-800">
-                    {p.numero}
+                  <a href={`/admin/processo?idprocesso=${p.numero}`}>
+                    <span className="font-bold px-0 py-1 no-underline">{p.numero}</span>
                   </a>
                 </td>
                 <td className="border-b px-2 py-1">{p.descricao}</td>
@@ -117,8 +117,8 @@ const DashboardAdmin: React.FC = () => {
         </table>
       </div>
 
-      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px]">
-        <h3 className="font-semibold mb-2">Processos não atribuídos</h3>
+    <div className="bg-white rounded-md border border-dashed p-4 xl:w-[1200px]">
+        <h4 className="font-semibold mb-4">Processos não atribuídos</h4> 
         <table className="min-w-full text-sm border-collapse">
           <thead className="bg-gray-100">
             <tr>
@@ -131,8 +131,8 @@ const DashboardAdmin: React.FC = () => {
             {naoAtribuidos.map((p) => (
               <tr key={p.numero}>
                 <td className="border-b px-2 py-1">
-                  <a href={`/admin/processo?idprocesso=${p.numero}`} className="text-blue-800">
-                    {p.numero}
+                  <a href={`/admin/processo?idprocesso=${p.numero}`}>
+                    <span className="font-bold px-0 py-1 no-underline">{p.numero}</span>
                   </a>
                 </td>
                 <td className="border-b px-2 py-1">{p.descricao}</td>

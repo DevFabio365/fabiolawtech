@@ -66,44 +66,51 @@ const Processo: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col space-y-8 items-center pt-5 bg-gray-100">
-      <div className="w-full max-w-[1100px] space-y-8">
-        <h2 className="text-xl font-bold">Processo: 0012345-89.2024.8.26.0001</h2>
+      <div className="w-full max-w-[1100px] space-y-8">        
+        <div className="font-bold text-black text-xl">Processo: 0012345-89.2024.8.26.0001</div>
 
         <div className="flex flex-wrap gap-4">
           <div className="flex-1 bg-white p-4 rounded-md shadow">
             <p>
-              <strong>Resumo:</strong> Contestação por inadimplemento.
+              <strong className="font-bold text-xs">Resumo:</strong> <span className="text-xs w-44">Contestação por inadimplemento.</span>
             </p>
             <p>
-              <strong>Objeto:</strong> Agravo
+              <strong className="font-bold text-xs">Objeto:</strong> <span className="text-xs w-44">Agravo</span>
             </p>
             <p>
-              <strong>Providência:</strong> Manifestação ao agravo.
+              <strong className="font-bold text-xs">Providência:</strong> <span className="text-xs w-44">Manifestação ao agravo.</span>
             </p>
           </div>
           <div className="flex-1 bg-white p-4 rounded-md shadow">
             <p>
-              <strong>Prazo Interno:</strong> 09/06/2024
+              <strong className="font-bold text-xs">Prazo Interno:</strong> <span className="text-xs w-44">09/06/2024</span>
             </p>
             <p>
-              <strong>Prazo Fatal:</strong> 12/06/2024
+              <strong className="font-bold text-xs">Prazo Fatal:</strong> <span className="text-xs w-44">12/06/2024</span>
             </p>
           </div>
           <div className="flex-1 bg-white p-4 rounded-md shadow">
-            <p>
-              <strong>Status:</strong>{' '}
-              <span className="px-2 py-1 rounded font-semibold bg-blue-100 text-blue-900">Em andamento</span>
-            </p>
-            <div className="flex items-center gap-4 mt-4">
-              <span className="font-medium">Ações:</span>
-              <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">Enviar para revisão</button>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col items-start gap-1">
+                <span className="font-bold text-xs">Status:</span>
+                <span className="bg-[#2C3E50] px-4 py-2 rounded-md text-white">
+                  Em andamento
+                </span>
+              </div>
+
+              <div className="flex flex-col items-start gap-1">
+                <span className="font-bold text-xs">Ações:</span>
+                <span className="bg-[#2C3E50] px-4 py-2 rounded-md text-white">
+                  Enviar para revisão
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-4">
           <div className="flex-1">
-            <h3 className="font-semibold mb-2">Peça</h3>
+            <h4 className="font-semibold mb-2">Peça</h4>
             <div
               className="border-2 border-dashed border-gray-300 p-4 text-center bg-white rounded-lg relative text-sm mb-4 min-h-[80px]"
               onDragOver={(e) => e.preventDefault()}
@@ -125,7 +132,7 @@ const Processo: React.FC = () => {
                   <tr>
                     <th className="px-2 py-1 text-left">Nome</th>
                     <th className="px-2 py-1 text-left">Versão</th>
-                    <th className="px-2 py-1 text-left">Atualizado em</th>
+                    <th className="px-2 py-1 text-left">Atualizado</th>
                     <th className="px-2 py-1 text-left">Nota</th>
                   </tr>
                 </thead>
@@ -142,7 +149,7 @@ const Processo: React.FC = () => {
           </div>
 
           <div className="flex-1">
-            <h3 className="font-semibold mb-2">Arquivos complementares</h3>
+            <h4 className="font-semibold mb-2">Arquivos complementares</h4>            
             <div
               className="border-2 border-dashed border-gray-300 p-4 text-center bg-white rounded-lg relative text-sm mb-4 min-h-[80px]"
               onDragOver={(e) => e.preventDefault()}
@@ -166,52 +173,65 @@ const Processo: React.FC = () => {
                   <th className="px-2 py-1 text-left"></th>
                 </tr>
               </thead>
+              
               <tbody>
-                {complementares.map((c, i) => (
-                  <tr key={i}>
-                    <td className="border-b px-2 py-1">
-                      <a href="#" className="text-[#2C3E50] font-medium">
-                        {c.nome}
-                      </a>
-                    </td>
-                    <td className="border-b px-2 py-1">{c.nota}</td>
-                    <td className="border-b px-2 py-1 w-10">
-                      <button onClick={() => removerComplementar(i)}>🗑️</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+                <tr className="border-b">
+                  <td className="px-2 py-1">Contestacao_001.docx</td>
+                  <td className="px-2 py-1">Versão inicial enviada pelo advogado</td>
+                  <td className="px-2 py-1 text-right">
+                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
+                      🗑️ Remover
+                    </button>
+                  </td>
+                </tr>
+                <tr className="border-b">
+                  <td className="px-2 py-1">Contestacao_002.docx</td>
+                  <td className="px-2 py-1">Versão inicial enviada pelo advogado</td>
+                  <td className="px-2 py-1 text-right">
+                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
+                      🗑️ Remover
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-2 py-1">Contestacao_003.docx</td>
+                  <td className="px-2 py-1">Versão inicial enviada pelo advogado</td>
+                  <td className="px-2 py-1 text-right">
+                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
+                      🗑️ Remover
+                    </button>
+                  </td>
+                </tr>
+              </tbody>                
             </table>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-md mb-8 shadow">
+        <div className="bg-white p-4 rounded-md mb-8 shadow border-2">
           <h4 className="font-semibold mb-2">Templates gerados por AI</h4>
+          
           <ul className="list-disc pl-5 space-y-1">
-            <li>
+            <li className="text-xs w-100">
               <a
                 href="#"
-                className="cursor-grab select-none"
                 draggable
                 onDragStart={(e) => dragStart(e, 'Modelo Contestação.docx')}
               >
                 Modelo Contestação.docx
               </a>
             </li>
-            <li>
+            <li className="text-xs w-100">
               <a
                 href="#"
-                className="cursor-grab select-none"
                 draggable
                 onDragStart={(e) => dragStart(e, 'Resposta Inicial.docx')}
               >
                 Resposta Inicial.docx
               </a>
             </li>
-            <li>
+            <li className="text-xs w-100">
               <a
                 href="#"
-                className="cursor-grab select-none"
                 draggable
                 onDragStart={(e) => dragStart(e, 'Memorial.docx')}
               >
@@ -220,13 +240,13 @@ const Processo: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div className="bg-white p-4 rounded-md shadow">
+        <div className="bg-white p-4 rounded-md shadow mb-8 border-2">
           <h4 className="font-semibold mb-2">Histórico do processo</h4>
-          <ul className="list-disc pl-5">
-            <li>Distribuído em 01/06/2024</li>
-            <li>Intimação recebida em 05/06/2024</li>
-            <li>Peça carregada em 09/06/2024</li>
-            <li>Envio para revisão pendente</li>
+          <ul className="list-disc pl-5 space-y-1">
+            <li className="text-xs w-44">Distribuído em 01/06/2024</li>
+            <li className="text-xs w-100">Intimação recebida em 05/06/2024</li>
+            <li className="text-xs w-44">Peça carregada em 09/06/2024</li>
+            <li className="text-xs w-44">Envio para revisão pendente</li>
           </ul>
         </div>
 

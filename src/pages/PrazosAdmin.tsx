@@ -77,7 +77,7 @@ const PrazosAdmin: React.FC = () => {
 
       <div className="flex gap-6 xl:w-[1200px] items-start">
         <div className="bg-white rounded-md shadow p-4 w-1/3 min-w-[240px]">
-          <h3 className="font-semibold mb-2">Prazos por advogado</h3>
+        <h4 className="font-semibold mb-2">Prazos por advogado</h4>          
           <ResponsiveContainer width="100%" height={360}>
             <BarChart layout="vertical" data={prazosStatusPorAdvogado}>
               <XAxis type="number" />
@@ -96,41 +96,149 @@ const PrazosAdmin: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-md shadow p-4 flex-1 overflow-y-auto">
-          <h3 className="font-semibold mb-2">Prazos da semana</h3>
-          <table className="min-w-full text-sm border-collapse">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-2 py-1 text-left">Processo</th>
-                <th className="px-2 py-1 text-left">Advogado</th>
-                <th className="px-2 py-1 text-left">Prazo Interno</th>
-                <th className="px-2 py-1 text-left">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {prazosSemana.map((prazo) => (
-                <tr
-                  key={prazo.processo}
-                  className={
-                    diasRestantes(prazo.prazoInterno) <= 2 ? 'bg-red-50' : ''
-                  }
-                >
+
+
+
+
+        <div className="bg-white rounded-md border border-dashed p-4 flex-1">
+          <h4 className="font-semibold mb-4">Prazos da semana</h4>
+            <table className="min-w-full text-sm border-collapse bg-white">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-2 py-1 text-left">Processo</th>
+                  <th className="px-2 py-1 text-left">Advogado</th>
+                  <th className="px-2 py-1 text-left">Prazo Interno</th>
+                  <th className="px-2 py-1 text-left">Status</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr className="border-b">
                   <td className="border-b px-2 py-1">
                     <a
-                      href={`/admin/processo?idprocesso=${prazo.processo}`}
-                      className="text-blue-800"
+                      href={`/admin/processo?idprocesso=1`}                      
                     >
-                      {prazo.processo}
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
                     </a>
                   </td>
-                  <td className="border-b px-2 py-1">{prazo.advogado}</td>
-                  <td className="border-b px-2 py-1">{prazo.prazoInterno}</td>
-                  <td className="border-b px-2 py-1">{prazo.status}</td>
+                  <td className="border-b px-2 py-1">Dra. Ana</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td> 
+                  <td className="border-b px-2 py-1">Em andamento</td>   
                 </tr>
-              ))}
-            </tbody>
-          </table>
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dr. João</td>
+                  <td className="border-b px-2 py-1">10/06/2024</td> 
+                  <td className="border-b px-2 py-1">Recebido</td>   
+                </tr> 
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">2045678-22.2024.8.26.0002</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dr. Carlos</td>
+                  <td className="border-b px-2 py-1">12/06/2024</td> 
+                  <td className="border-b px-2 py-1">Em revisão</td>   
+                </tr> 
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dra. Ana</td>
+                  <td className="border-b px-2 py-1">13/06/2024</td> 
+                  <td className="border-b px-2 py-1">Recebido</td>   
+                </tr> 
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dra. Ana</td>
+                  <td className="border-b px-2 py-1">14/06/2024</td> 
+                  <td className="border-b px-2 py-1">Em andamento</td>   
+                </tr>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dra. Ana</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td> 
+                  <td className="border-b px-2 py-1">Em andamento</td>   
+                </tr>
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dr. João</td>
+                  <td className="border-b px-2 py-1">10/06/2024</td> 
+                  <td className="border-b px-2 py-1">Recebido</td>   
+                </tr> 
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">2045678-22.2024.8.26.0002</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dr. Carlos</td>
+                  <td className="border-b px-2 py-1">12/06/2024</td> 
+                  <td className="border-b px-2 py-1">Em revisão</td>   
+                </tr> 
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dra. Ana</td>
+                  <td className="border-b px-2 py-1">13/06/2024</td> 
+                  <td className="border-b px-2 py-1">Recebido</td>   
+                </tr> 
+                  <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/admin/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Dra. Ana</td>
+                  <td className="border-b px-2 py-1">14/06/2024</td> 
+                  <td className="border-b px-2 py-1">Em andamento</td>   
+                </tr>                    
+              </tbody>                
+            </table>
         </div>
+
+
+
       </div>
     </div>
   );

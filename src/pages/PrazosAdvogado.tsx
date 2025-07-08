@@ -83,56 +83,128 @@ const PrazosAdvogado: React.FC = () => {
           ))}
       </div>
 
-      <div className="bg-white rounded-md shadow p-4 xl:w-[1200px] overflow-auto">
-        <h3 className="font-semibold mb-2">Próximos prazos internos</h3>
-        <table className="min-w-full text-sm border-collapse">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-2 py-1 text-left">Processo</th>
-              <th className="px-2 py-1 text-left">Resumo</th>
-              <th className="px-2 py-1 text-left">Objeto</th>
-              <th className="px-2 py-1 text-left">Providência</th>
-              <th className="px-2 py-1 text-left">Prazo Interno</th>
-              <th className="px-2 py-1 text-left">Prazo Fatal</th>
-              <th className="px-2 py-1 text-left">Status</th>
-              <th className="px-2 py-1 text-left">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {prazos.map((p) => (
-              <tr
-                key={p.processo}
-                className={diasRestantes(p.prazoInterno) <= 2 ? 'bg-red-50' : ''}
-              >
-                <td className="border-b px-2 py-1">
-                  <a href={`/adv/processo?idprocesso=${p.processo}`} className="text-blue-800">
-                    {p.processo}
-                  </a>
-                </td>
-                <td className="border-b px-2 py-1">{p.resumo}</td>
-                <td className="border-b px-2 py-1">{p.objeto}</td>
-                <td className="border-b px-2 py-1">{p.providencia}</td>
-                <td className="border-b px-2 py-1">{p.prazoInterno}</td>
-                <td className="border-b px-2 py-1">{p.prazoFatal}</td>
-                <td className="border-b px-2 py-1">{p.status}</td>
-                <td className="border-b px-2 py-1 space-x-2">
-                  {p.status === 'Recebido' && (
+      <div className="bg-white rounded-md border border-dashed p-4 xl:w-[1200px]">
+        <h4 className="font-semibold mb-4">Próximos prazos internos</h4>        
+            <table className="min-w-full text-sm border-collapse bg-white">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-2 py-1 text-left">Processo</th>
+                  <th className="px-2 py-1 text-left">Resumo</th>
+                  <th className="px-2 py-1 text-left">Objeto</th>
+                  <th className="px-2 py-1 text-left">Providência</th>
+                  <th className="px-2 py-1 text-left">Prazo Interno</th>
+                  <th className="px-2 py-1 text-left">Prazo Fatal</th>
+                  <th className="px-2 py-1 text-left">Status</th>
+                  <th className="px-2 py-1 text-left">Ações</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Intimação para manifestação sobre prova pericial.</td>
+                  <td className="border-b px-2 py-1">Intimação</td> 
+                  <td className="border-b px-2 py-1">Analisar</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td>
+                  <td className="border-b px-2 py-1">15/06/2024</td>
+                  <td className="border-b px-2 py-1">Recebido</td>
+                  <td className="border-b px-2 py-1">
                     <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
                       Iniciar
                     </button>
-                  )}
-                  {p.status === 'Em andamento' && (
+                  </td>   
+                </tr>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Resposta à petição inicial.</td>
+                  <td className="border-b px-2 py-1">Citação</td> 
+                  <td className="border-b px-2 py-1">Analisar</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td>
+                  <td className="border-b px-2 py-1">15/06/2024</td>
+                  <td className="border-b px-2 py-1">Em andamento</td>
+                  <td className="border-b px-2 py-1">
                     <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
                       Enviar para revisão
                     </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                  </td>   
+                </tr>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Análise de despacho de redistribuição.</td>
+                  <td className="border-b px-2 py-1">Mandado</td> 
+                  <td className="border-b px-2 py-1">Analisar</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td>
+                  <td className="border-b px-2 py-1">15/06/2024</td>
+                  <td className="border-b px-2 py-1">Em revisão</td>
+                  <td className="border-b px-2 py-1">
+                    <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
+                      Iniciar
+                    </button>
+                  </td>   
+                </tr>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Decisão sobre produção de provas.</td>
+                  <td className="border-b px-2 py-1">Intimação</td> 
+                  <td className="border-b px-2 py-1">Analisar</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td>
+                  <td className="border-b px-2 py-1">15/06/2024</td>
+                  <td className="border-b px-2 py-1">Concluído</td>
+                  <td className="border-b px-2 py-1">
+                    <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
+                      Enviar para revisão
+                    </button>
+                  </td>   
+                </tr>
+                <tr className="border-b">
+                  <td className="border-b px-2 py-1">
+                    <a
+                      href={`/adv/processo?idprocesso=1`}                      
+                    >
+                      <span className="font-bold px-0 py-1 no-underline">1023456-98.2024.8.26.0001</span>
+                    </a>
+                  </td>
+                  <td className="border-b px-2 py-1">Intimação de sentença.</td>
+                  <td className="border-b px-2 py-1">Intimação</td> 
+                  <td className="border-b px-2 py-1">Analisar</td>
+                  <td className="border-b px-2 py-1">09/06/2024</td>
+                  <td className="border-b px-2 py-1">15/06/2024</td>
+                  <td className="border-b px-2 py-1">Distribuído</td>
+                  <td className="border-b px-2 py-1">
+                    <button className="bg-[#2C3E50] text-white px-3 py-1 rounded">
+                      Enviar para revisão
+                    </button>
+                  </td>   
+                </tr>
+              </tbody>
+            </table>     
+      </div>      
     </div>
+    
   );
 };
 
